@@ -7,8 +7,8 @@ export default function Detail({ match }) {
 	// const item = useSelector((state) => state.view);
 	let matchId = Number(match.params.id);
 
-	const item = products.find((i) => {
-		return i.id === matchId;
+	const item = products.find((product) => {
+		return product.id === matchId;
 	});
 
 	return (

@@ -4,19 +4,22 @@ import './style.css';
 import { useSelector } from 'react-redux';
 
 export default function Nav() {
-	const addToCart = useSelector((state) => state.currentCart);
+	const currentCart = useSelector((state) => state.currentCart);
 	const refCart = useRef('/cart');
-	// console.log(addToCart);
+	let numberOfItems = 0;
+	currentCart.cart.forEach((item) => {
+		numberOfItems += item.qnt;
+	});
+
+	console.log(numberOfItems);
 
 	return (
 		<div className='nav'>
 			<button style={{ marginLeft: '30px' }} className='cart'>
-				Cart()
+				Cart({numberOfItems})
 			</button>
-
 			<ul>
 				<Link to='/'>
-					{' '}
 					<li>Home</li>
 				</Link>
 				<Link to='/cart'>

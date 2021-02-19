@@ -12,6 +12,7 @@ export const viewReducer = (state = null, action) => {
 let initialVal = {
 	cart: [],
 	loadItem: null,
+	qnt: 0,
 };
 export const addToCartReducer = (state = initialVal, action) => {
 	switch (action.type) {
@@ -29,13 +30,18 @@ export const addToCartReducer = (state = initialVal, action) => {
 								: item
 					  )
 					: [...state.cart, { ...item, qnt: 1 }],
+				qnt: state.qnt + 1,
 			};
 
 		case 'REMOVE_ITEM':
 			let removeItem = action.payload.id;
+
 			return {
 				...state,
 				cart: state.cart.filter((remove) => remove.id !== removeItem),
+				qnt: state.cart.map(
+					(item) => item.id === removeItem && Number(state.qnt - item.qnt)
+				),
 			};
 
 		default:

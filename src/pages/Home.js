@@ -11,7 +11,7 @@ export default function Home() {
 	const cart = useSelector((state) => state.currentCart);
 	function handleView(itemId) {
 		dispatch(viewItem(itemId));
-		console.log(cart);
+		// console.log(cart);
 	}
 
 	return (
